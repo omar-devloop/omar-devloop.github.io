@@ -8,12 +8,15 @@ import { useActiveSection } from '@/hooks/use-active-section'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Link } from '@/components/link'
+import { navigate, sectionHref } from '@/lib/router'
 
-const sectionIds = ['home', ...site.nav.map((item) => item.href.replace('#', ''))]
+const sectionIds = ['home', 'about', 'contact']
 
-export function SiteHeader() {
+export function SiteHeader({ path }: { path: string }) {
   const [open, setOpen] = useState(false)
-  const active = useActiveSection(sectionIds)
+  const activeSection = useActiveSection(sectionIds, path)
+  const onProjectsPage = path === '/projects'
 
   /**
    * The menu locks page scrolling while open, so an in-page anchor would fire
@@ -22,17 +25,15 @@ export function SiteHeader() {
   const handleSectionLink = (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     setOpen(false)
-    window.setTimeout(() => {
-      document.querySelector<HTMLElement>(href)?.scrollIntoView()
-      window.history.replaceState(null, '', href)
-    }, 400)
+    const target = href.startsWith('#') ? (path === '/' ? href : `/${href}`) : href
+    window.setTimeout(() => navigate(target), 400)
   }
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-6">
-        <a
-          href="#home"
+        <Link
+          to="/"
           className="group flex items-center gap-2.5 rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           <span className="flex size-7 items-center justify-center rounded-md border border-border bg-muted/60 font-mono text-[11px] font-medium tracking-tight">
@@ -42,25 +43,42 @@ export function SiteHeader() {
           <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
             / {site.role}
           </span>
-        </a>
+        </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
           {site.nav.map((item) => {
-            const isActive = active === item.href.replace('#', '')
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                aria-current={isActive ? 'true' : undefined}
-                className={cn(
-                  'relative rounded-md px-3 py-1.5 text-sm transition-colors outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50',
-                  isActive ? 'text-foreground' : 'text-muted-foreground',
-                )}
-              >
+            const isRoute = !item.href.startsWith('#')
+            const isActive = isRoute ? onProjectsPage : activeSection === item.href.slice(1)
+            const className = cn(
+              'relative rounded-md px-3 py-1.5 text-sm transition-colors outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50',
+              isActive ? 'text-foreground' : 'text-muted-foreground',
+            )
+            const content = (
+              <>
                 {item.label}
                 {isActive ? (
                   <span className="absolute inset-x-3 -bottom-[9px] h-px bg-foreground" />
                 ) : null}
+              </>
+            )
+
+            return isRoute ? (
+              <Link
+                key={item.href}
+                to={item.href}
+                aria-current={isActive ? 'page' : undefined}
+                className={className}
+              >
+                {content}
+              </Link>
+            ) : (
+              <a
+                key={item.href}
+                href={sectionHref(item.href)}
+                aria-current={isActive ? 'true' : undefined}
+                className={className}
+              >
+                {content}
               </a>
             )
           })}
@@ -68,12 +86,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-1">
           <Button asChild variant="ghost" size="icon" className="hidden sm:inline-flex">
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub profile"
-            >
+            <a href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub profile">
               <GithubIcon />
             </a>
           </Button>
@@ -88,16 +101,31 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-72">
               <SheetTitle className="sr-only">Navigation</SheetTitle>
               <div className="flex flex-col gap-1 px-4 pt-14">
-                {site.nav.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={handleSectionLink(item.href)}
-                    className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  >
-                    {item.label}
-                  </a>
-                ))}
+                {site.nav.map((item) =>
+                  item.href.startsWith('#') ? (
+                    <a
+                      key={item.href}
+                      href={path === '/' ? item.href : `/${item.href}`}
+                      onClick={handleSectionLink(item.href)}
+                      className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={onProjectsPage ? 'page' : undefined}
+                      className={cn(
+                        'rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted hover:text-foreground',
+                        onProjectsPage ? 'text-foreground' : 'text-muted-foreground',
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  ),
+                )}
                 <a
                   href={site.github}
                   target="_blank"

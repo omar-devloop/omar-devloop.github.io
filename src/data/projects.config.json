@@ -1,6 +1,6 @@
 {
   "featured": ["KoboMobile", "koboenhance", "KoboToolboxBulkSubmission"],
-  "hidden": [],
+  "hidden": ["omar-devloop.github.io", "portfolio"],
   "tags": {
     "KoboMobile": ["Flutter", "Dart", "Android", "KoboToolbox"],
     "koboenhance": ["TypeScript", "Chrome Extension", "Manifest V3", "KoboToolbox"],

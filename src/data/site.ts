@@ -17,7 +17,7 @@ export const site = {
   avatar: avatarUrl,
   github: 'https://github.com/omar-devloop',
   githubRepos: 'https://github.com/omar-devloop?tab=repositories',
-  url: 'https://omar-devloop.github.io/portfolio/',
+  url: 'https://omar-devloop.github.io/',
   availability: 'Open to collaboration and new opportunities',
   now: {
     name: 'KoboMobile',
@@ -25,7 +25,7 @@ export const site = {
     note: 'a Flutter Android companion app for KoboToolbox field teams',
   },
   nav: [
-    { label: 'Projects', href: '#projects' },
+    { label: 'Projects', href: '/projects' },
     { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' },
   ],

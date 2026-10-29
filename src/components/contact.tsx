@@ -1,6 +1,7 @@
 import { ArrowUpRight, Mail } from 'lucide-react'
 import { GithubIcon } from '@/components/icons'
 import { site } from '@/data/site'
+import { Link } from '@/components/link'
 import { Button } from '@/components/ui/button'
 
 export function Contact() {
@@ -70,9 +71,9 @@ export function SiteFooter() {
           <a href={`mailto:${site.email}`} className="hover:text-foreground">
             Email
           </a>
-          <a href="#home" className="hover:text-foreground">
+          <Link to="/" className="hover:text-foreground">
             Top ↑
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

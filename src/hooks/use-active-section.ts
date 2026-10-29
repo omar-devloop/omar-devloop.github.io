@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 /** Highlights the nav item for the section currently in view. */
-export function useActiveSection(ids: readonly string[]) {
+export function useActiveSection(ids: readonly string[], key?: string) {
   const [active, setActive] = useState(ids[0] ?? '')
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export function useActiveSection(ids: readonly string[]) {
 
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
-  }, [ids])
+  }, [ids, key])
 
   return active
 }
