@@ -16,7 +16,7 @@ const sectionIds = ['home', 'about', 'contact']
 export function SiteHeader({ path }: { path: string }) {
   const [open, setOpen] = useState(false)
   const activeSection = useActiveSection(sectionIds, path)
-  const onProjectsPage = path === '/projects'
+  const isCurrent = (href: string) => href === path
 
   /**
    * The menu locks page scrolling while open, so an in-page anchor would fire
@@ -48,7 +48,7 @@ export function SiteHeader({ path }: { path: string }) {
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
           {site.nav.map((item) => {
             const isRoute = !item.href.startsWith('#')
-            const isActive = isRoute ? onProjectsPage : activeSection === item.href.slice(1)
+            const isActive = isRoute ? isCurrent(item.href) : activeSection === item.href.slice(1)
             const className = cn(
               'relative rounded-md px-3 py-1.5 text-sm transition-colors outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50',
               isActive ? 'text-foreground' : 'text-muted-foreground',
@@ -116,10 +116,10 @@ export function SiteHeader({ path }: { path: string }) {
                       key={item.href}
                       to={item.href}
                       onClick={() => setOpen(false)}
-                      aria-current={onProjectsPage ? 'page' : undefined}
+                      aria-current={isCurrent(item.href) ? 'page' : undefined}
                       className={cn(
                         'rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted hover:text-foreground',
-                        onProjectsPage ? 'text-foreground' : 'text-muted-foreground',
+                        isCurrent(item.href) ? 'text-foreground' : 'text-muted-foreground',
                       )}
                     >
                       {item.label}

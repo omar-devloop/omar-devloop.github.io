@@ -52,18 +52,6 @@ export function SiteFooter() {
         <p className="font-mono">
           © {year} {site.name}
         </p>
-        <p>
-          Built with React, Tailwind CSS and{' '}
-          <a
-            href="https://ui.shadcn.com"
-            target="_blank"
-            rel="noreferrer"
-            className="text-foreground underline-offset-4 hover:underline"
-          >
-            shadcn/ui
-          </a>
-          .
-        </p>
         <div className="flex items-center gap-4 font-mono">
           <a href={site.github} target="_blank" rel="noreferrer" className="hover:text-foreground">
             GitHub
