@@ -37,6 +37,8 @@ Requires Node 20+.
 
 That snapshot is committed, so the site still builds if the API is unavailable or rate-limited. Set `GITHUB_TOKEN` to raise the rate limit (CI does this automatically).
 
+The list is baked in at build time, not fetched in the browser. A newly created repository appears after the next deploy — which happens on a push to `main`, on the six-hourly schedule, or manually from **Actions → Deploy to GitHub Pages → Run workflow**.
+
 To hide a repository, add its name to `hidden` in `src/data/projects.config.json`. To pin the order, list names in `featured`. The home page shows the first three projects in that order; `/projects` shows all of them.
 
 ## Build

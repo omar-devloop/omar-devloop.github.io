@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Rebuild every six hours so newly created public repos show up on their own.
+  schedule:
+    - cron: '15 */6 * * *'
 
 permissions:
   contents: read
