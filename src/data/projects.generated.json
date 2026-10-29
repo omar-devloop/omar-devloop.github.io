@@ -1,0 +1,51 @@
+{
+  "username": "omar-devloop",
+  "generatedAt": "2026-10-29T09:43:20.237Z",
+  "repos": [
+    {
+      "name": "KoboMobile",
+      "description": "KoboMobile is an unofficial Flutter Android app for KoboToolbox data managers. It lets you browse, validate, and export submissions - all from your phone.",
+      "url": "https://github.com/omar-devloop/KoboMobile",
+      "homepage": null,
+      "language": "Dart",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Android",
+        "KoboToolbox"
+      ],
+      "stars": 2,
+      "updatedAt": "2025-12-16T12:37:19Z"
+    },
+    {
+      "name": "koboenhance",
+      "description": "Manifest V3 browser extension for bulk KoboToolbox project management: permissions, metadata, reports, and cross-account project copy.",
+      "url": "https://github.com/omar-devloop/koboenhance",
+      "homepage": null,
+      "language": "JavaScript",
+      "tags": [
+        "TypeScript",
+        "Chrome Extension",
+        "Manifest V3",
+        "KoboToolbox"
+      ],
+      "stars": 0,
+      "updatedAt": "2026-10-29T09:05:02Z"
+    },
+    {
+      "name": "KoboToolboxBulkSubmission",
+      "description": "Python script for bulk submissions with media files to KoboToolbox forms, driven by CSV input and the KoboToolbox API.",
+      "url": "https://github.com/omar-devloop/KoboToolboxBulkSubmission",
+      "homepage": null,
+      "language": "Python",
+      "tags": [
+        "Python",
+        "Automation",
+        "REST API",
+        "KoboToolbox"
+      ],
+      "stars": 1,
+      "updatedAt": "2025-05-25T11:06:17Z"
+    }
+  ]
+}

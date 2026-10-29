@@ -1,0 +1,12 @@
+{
+  "featured": ["KoboMobile", "koboenhance", "KoboToolboxBulkSubmission"],
+  "hidden": [],
+  "tags": {
+    "KoboMobile": ["Flutter", "Dart", "Android", "KoboToolbox"],
+    "koboenhance": ["TypeScript", "Chrome Extension", "Manifest V3", "KoboToolbox"],
+    "KoboToolboxBulkSubmission": ["Python", "Automation", "REST API", "KoboToolbox"]
+  },
+  "descriptions": {
+    "KoboToolboxBulkSubmission": "Python script for bulk submissions with media files to KoboToolbox forms, driven by CSV input and the KoboToolbox API."
+  }
+}

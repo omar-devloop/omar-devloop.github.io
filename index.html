@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <title>Omar Alafa — Flutter Developer</title>
+    <meta
+      name="description"
+      content="Omar Alafa is a self-taught Flutter developer building mobile apps and small tools that make field data collection less manual."
+    />
+    <meta name="author" content="Omar Alafa" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Omar Alafa — Flutter Developer" />
+    <meta
+      property="og:description"
+      content="Flutter apps and small tools that make field data collection less manual."
+    />
+    <meta property="og:url" content="https://omar-devloop.github.io/portfolio/" />
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/62621742?v=4" />
+    <meta name="twitter:card" content="summary" />
+
+    <script>
+      // Set the theme before first paint to avoid a flash of the wrong colors.
+      ;(() => {
+        try {
+          const stored = localStorage.getItem('theme')
+          const dark =
+            stored === 'dark' ||
+            (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+        } catch {
+          /* ignore */
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
